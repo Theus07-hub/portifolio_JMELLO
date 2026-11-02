@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'CSS/index.css' %}" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Profile card start -->
+    <div class="card">
+        <div class="card-image">
+            <img src="{% static 'image/banner-jmello.jpg'%}" alt="imagem de fundo">
+        </div>
+        <div class="profile-image">
+            <img src="{% static 'image/image-perfil.jpeg'%}" alt="foto de perfil">
+        </div>
+        <div class="card-content">
+            <h3>João Vitor Melo</h3>
+            <p>Fotografo Esportivo</p>
+        </div>
+        <div class="icons">
+            <a href="https://youtube.com/@vb96performance?si=QWRaqg8MXSq_nZA8" class="fa-brands fa-youtube"></a>
+            <a href="#" class="fa-brands fa-whatsapp"></a>
+            <a href="https://www.instagram.com/mello_mde?exln=MTR5MGE4OXcyNmM2cQ==" class="fa-brands fa-instagram"></a>
+        </div>
+        <div class="div background-image">
+            <img src="{% static 'image/mdm-branco.jpg'%}">
+        </div>
+    </div>
+    <!-- Profile card end -->
+
+    <!-- Seção para Adicionar Novas Fotos e Videos ao Carrossel -->
+    <section>
+        <div id="adicionar-photo" class="card-photo">
+            <form action="{% url 'adicionar_midia' %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <input type="text" name="titulo" placeholder="Título da Mídia" required>
+                <input type="text" name="descricao" placeholder="Descrição" required>
+
+                <label style="font-size: 0.85rem; color: #555; display: block; margin-top: 5px;">Escolher Foto(s):</label>
+                <input type="file" name="imagem" accept="image/*" multiple>
+
+                <label style="font-size: 0.85rem; color: #555; display: block; margin-top: 5px;">Escolher Vídeo(s) (.mp4):</label>
+                <input type="file" name="video" accept="video/*" multiple>
+
+                <button type="submit" class="add-btn" style="margin-top: 15px;"><i class="fa-solid fa-plus"></i> Salvar no Sistema</button>
+            </form>
+        </div>
+    </section>
+
+    <!--Fim da seção para adicionar Videos e Fotos-->
+
+    <!-- ================= SEÇÃO DE FOTOS ================= -->
+    <h2 class="section_foto">Galeria de Fotos</h2>
+    <section class="carousel-container">
+        <button class="carousel-btn prev-btn" onclick="scrollCarousel(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+
+        <div class="carousel" id="photoCarousel">
+            {% for foto in fotos %}
+                <div class="carousel-item">
+                    <div class="item-actions">
+                        <button class="edit-btn" title="Editar" onclick="editPhoto(this)"><i class="fa-solid fa-pen"></i></button>
+                        <a href="{% url 'deletar_midia' foto.id %}" class="delete-btn" title="Remover" onclick="return confirm('Deseja realmente excluir esta foto?');" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none;"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                    <h2>{{ foto.titulo }}</h2>
+                    <p>{{ foto.descricao }}</p>
+                    <div class="img" style="cursor: pointer;" onclick="openLightbox('{{ foto.imagem.url }}', '{{ foto.titulo|escapejs }}', '{{ foto.descricao|escapejs }}')">
+                        <img src="{{ foto.imagem.url }}" alt="{{ foto.titulo }}">
+                        <div style="font-size: 0.85rem; color: #0066cc; margin-top: 5px; font-weight: bold;"><i class="fa-solid fa-expand"></i> Clicar para ampliar</div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="carousel-item">
+                    <h2>Nenhuma foto cadastrada</h2>
+                </div>
+            {% endfor %}
+        </div>
+
+        <button class="carousel-btn next-btn" onclick="scrollCarousel(1)"><i class="fa-solid fa-chevron-right"></i></button>
+    </section>
+
+
+    <!-- ================= SEÇÃO DE VÍDEOS ================= -->
+    <h2 class="section_video">Galeria de Vídeos</h2>
+    <section class="carousel-container">
+        <button class="carousel-btn prev-btn" onclick="scrollCarousel(-1)"><i class="fa-solid fa-chevron-left"></i></button>
+
+        <div class="carousel" id="videoCarousel">
+            {% for video_item in videos %}
+                <div class="carousel-item">
+                    <div class="item-actions">
+                        <button class="edit-btn" title="Editar" onclick="editPhoto(this)"><i class="fa-solid fa-pen"></i></button>
+                        <a href="{% url 'deletar_midia' video_item.id %}" class="delete-btn" title="Remover" onclick="return confirm('Deseja realmente excluir este vídeo?');" style="display: inline-flex; align-items: center; justify-content: center; text-decoration: none;"><i class="fa-solid fa-trash"></i></a>
+                    </div>
+                    <h2>{{ video_item.titulo }}</h2>
+                    <p>{{ video_item.descricao }}</p>
+                    <div class="img" style="cursor: pointer;" onclick="openVideoModal('{{ video_item.video.url }}', '{{ video_item.titulo|escapejs }}', '{{ video_item.descricao|escapejs }}')">
+                        <video width="100%" style="border-radius: 4px; pointer-events: none;" muted>
+                            <source src="{{ video_item.video.url }}" type="video/mp4">
+                        </video>
+                        <div style="font-size: 0.85rem; color: #0066cc; margin-top: 5px; font-weight: bold;"><i class="fa-solid fa-expand"></i> Clicar para ampliar / Tela cheia</div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="carousel-item">
+                    <h2>Nenhum vídeo cadastrado</h2>
+                </div>
+            {% endfor %}
+        </div>
+
+        <button class="carousel-btn next-btn" onclick="scrollCarousel(1)"><i class="fa-solid fa-chevron-right"></i></button>
+    </section>
+    <!-- Fim das seções -->
+
+    <!-- Lightbox Modal para ampliar a foto -->
+    <div id="lightboxModal" class="lightbox" onclick="closeLightbox(event)">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+            <img id="lightboxImg" src="" alt="Foto Ampliada">
+            <h2 id="lightboxTitle"></h2>
+            <p id="lightboxDesc"></p>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal para Vídeos -->
+    <div id="videoModal" class="lightbox" onclick="closeVideoModal(event)">
+        <div class="lightbox-content" onclick="event.stopPropagation()" style="text-align: center;">
+            <span class="lightbox-close" onclick="closeVideoModal()">&times;</span>
+            <video id="modalVideoPlayer" width="100%" controls style="max-height: 70vh; border-radius: 6px;">
+                <source id="modalVideoSource" src="" type="video/mp4">
+                Seu navegador não suporta vídeos.
+            </video>
+            <h2 id="modalVideoTitle" style="margin-top: 15px; color: #222;"></h2>
+            <p id="modalVideoDesc" style="color: #666;"></p>
+        </div>
+    </div>
+
+    <!-- Modal de Edição -->
+    <div id="editModal" class="lightbox" onclick="closeEditModal(event)">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <span class="lightbox-close" onclick="closeEditModal()">&times;</span>
+            <h2 style="margin-bottom: 15px; color: #222;">Editar Informações</h2>
+            <form id="editForm" onsubmit="saveEdit(event)" style="display: flex; flex-direction: column; gap: 12px;" method="POST"> 
+                {% csrf_token %}
+                <input type="text" id="editTitleInput" placeholder="Novo Título" required style="padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Candara', sans-serif; font-size: 15px;">
+                <input type="text" id="editDescInput" placeholder="Nova Descrição" required style="padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Candara', sans-serif; font-size: 15px;">
+                <button type="submit" class="add-btn" style="padding: 12px; border-radius: 6px; justify-content: center; margin-top: 5px;">Salvar Alterações</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="{% static 'JS/button.js' %}?v=2"></script>
+</body>
+</html>

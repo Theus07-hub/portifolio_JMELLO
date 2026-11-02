@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+    <head>
+        <meta charset="utf-8">
+        <title>Login</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'CSS/login.css' %}" type="text/css">
+    </head>
+    <body>
+
+        <div class="login-box">
+            <!-- Foto de perfil centralizada -->
+            <div class="profile" id="PF-image">
+                <img src="{% static 'image/singup-photo.jpeg' %}" alt="Foto de Perfil">
+            </div>
+
+            <!-- Formulário básico estilo GBY -->
+            <form class="cadastro" id="cadastro" action="{% url 'signup' %}" method="POST">
+                {% csrf_token %}
+
+                <label for="user">Usuário</label>
+                <input type="text" id="user" name="user" placeholder="Digite seu usuário" required />
+
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="********" required />
+
+                <input type="submit" value="Entrar">
+            </form>
+        </div>
+
+    </body>
+</html>

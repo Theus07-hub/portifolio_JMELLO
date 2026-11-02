@@ -1,0 +1,394 @@
+body {
+    margin: 0;
+    padding: 2rem;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+    font-family: "Candara", sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.card {
+    font-family: "Candara", sans-serif;
+    width: 340px;
+    overflow: hidden;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+}
+
+.card-image img{
+    width: 100%;
+    height: 150px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    object-fit: cover;
+}
+
+.background-image img{
+    position: absolute;
+    top: -15%;
+    left: 0%;
+    width: 100%;
+    min-height: 100vh;
+    background-image: url("../image/mdm-branco.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(2px);
+    z-index: -1;
+}
+
+.profile-image img{
+    z-index: 1;
+    width: 130px;
+    height: 150px;
+    position: relative;
+    margin-top: -75px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 0px;
+    transition-duration: 0.4s;
+    transition-property: transform;
+}
+
+.profile-image img:hover{
+    transform: scale(1.08);
+}
+
+.card-content h3{
+    font-size: 25px;
+    text-align: center;
+    margin: 0;
+}
+
+.card-content p{
+    font-size: 16px;
+    text-align: center;
+    padding: 0 20px 5px 20px;
+}
+
+.icons{
+    text-align: center;
+    padding-top: 5px;
+    padding-bottom: 30px;
+}
+
+.icons a{
+    text-decoration: none;
+    font-size: 20px;
+    color: #000000;
+    padding: 0 14px;
+    transition-duration: 0.4s;
+    transition-property: transform;
+}
+
+.icons a:hover{
+    transform: scale(1.5);
+}
+
+.section_foto {
+    background-color: #000000;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    color: #f5d000;
+    font-family: sans-serif;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 650px;
+}
+
+.section_video {
+    background-color: #333;
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: 10px;
+    color: #f5d000;
+    font-family: sans-serif;
+    padding: 12px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 650px;
+}
+
+/* ================= CARROSSEL MODERNO E COMPATÍVEL ================= */
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 650px;
+    display: flex;
+
+}
+
+.carousel {
+    display: flex;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    width: 100%;
+    padding: 1rem 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.carousel-item {
+    flex: 0 0 240px;
+    scroll-snap-align: center;
+    background: #fcf8f8ad;
+    border-radius: 12px;
+    padding: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+/* Ações do Card (Editar / Excluir) */
+.item-actions {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 5px;
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.carousel-item:hover .item-actions {
+    opacity: 1;
+}
+
+.item-actions button {
+    background: rgba(15, 23, 43, 0.85);
+    color: white;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    font-size: 0.8rem;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.item-actions button:hover {
+    background: rgba(15, 23, 43, 1);
+    transform: scale(1.1);
+}
+
+.item-actions .delete-btn:hover,
+.item-actions button.delete-btn:hover {
+    background: #ff0303 !important;
+}
+
+.carousel-item:hover {
+    transform: translateY(-5px);
+}
+
+.carousel-item .img {
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+
+.carousel-item .img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-item h2 {
+    font-size: 1.1rem;
+    margin: 10px 0 5px 0;
+    color: #222;
+}
+
+.carousel-item p {
+    font-size: 1.0rem;
+    margin: 0;
+    color: #050505;
+}
+
+/* Botões de navegação do carrossel */
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(15, 23, 43, 0.8);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    font-size: 1rem;
+    z-index: 10;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.carousel-btn:hover {
+    background-color: rgba(15, 23, 43, 1);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: -20px;
+}
+
+.next-btn {
+    right: -20px;
+}
+
+/* ================= FORMULÁRIO DE ADICIONAR FOTO ================= */
+
+.card-photo {
+    background: #ffffff;
+    width: 340px;
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: "Candara", sans-serif;
+    margin-bottom: 1rem;
+}
+
+.card-photo form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.card-photo input[type="text"],
+.card-photo input[type="file"] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 15px;
+    font-family: "Candara", sans-serif;
+    box-sizing: border-box;
+    outline: none;
+    transition: border-color 0.3s;
+}
+
+.card-photo input[type="text"]:focus,
+.card-photo input[type="file"]:focus {
+    border-color: #000;
+}
+
+.card-photo input[type="file"] {
+    background: #fafafa;
+    cursor: pointer;
+}
+
+.add-btn {
+    background-color: #0f172b;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 0px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: "Candara", sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.add-btn:hover {
+    transform: scale(1.02);
+}
+
+/* ================= LIGHTBOX E MODAL DE EDIÇÃO ================= */
+.lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.lightbox.active {
+    display: flex;
+}
+
+.lightbox-content {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    font-family: "Candara", sans-serif;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 60vh;
+    object-fit: contain;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.lightbox-content h2 {
+    margin: 10px 0 5px 0;
+    font-size: 1.3rem;
+    color: #222;
+}
+
+.lightbox-content p {
+    margin: 0;
+    font-size: 1rem;
+    color: #666;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #333;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.lightbox-close:hover {
+    color: #ff0303;
+}
+
