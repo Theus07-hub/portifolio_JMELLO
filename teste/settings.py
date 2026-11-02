@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'cloudinary_storage',
     'django.contrib.staticfiles',
+    'cloudinary',
     'home'
 ]
 
@@ -125,10 +127,10 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = []
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 
 
 MEDIA_URL = '/media/'
@@ -143,3 +145,13 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
+
+
+#credenciais do Cloudinary
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'Matheus_Campos',
+    'API_KEY': '547488382655417',
+    'API_SCRET': '9jlkrods6LBMORYwWrl0VzI8170'
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MedialCloudinaryStorage'
