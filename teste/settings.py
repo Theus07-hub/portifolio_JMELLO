@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-#w@*4n&+e_ief-dq^^1h7f0%m=i66-_=2df+l0hmg@cfp&(e+y
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['Theus07hub.pythonanywhere.com', 'localhost', '127.0.0.1', '*']
 
 
 # Application definition
@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'teste.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'home.mysql_backend',
-        'NAME': 'jmello',
-        'USER': 'root',
-        'PASSWORD' : '',
-        'HOST': 'localhost',
+        'NAME': 'Theus07hub$default',
+        'USER': 'Theus07hub',
+        'PASSWORD' : 'Ninacampos07062006',
+        'HOST': 'Theus07hub.mysql.pythonanywhere-services.com',
         'PORT': '3306',
     }
 }
@@ -110,7 +110,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'pt-br'
 
-TIME_ZONE = 'America/Sao_paulo'
+TIME_ZONE = 'America/Sao_Paulo'
 
 USE_I18N = True
 
@@ -121,7 +121,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/6.1/howto/static-files/
 
 STATIC_URL = 'static/'
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'templates', 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = []
 
 
 MEDIA_URL = '/media/'
