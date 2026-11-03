@@ -159,7 +159,7 @@ MAILERS = {
 
 #credenciais do Cloudinary
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'Matheus_Campos',
+    'CLOUD_NAME': 'Matheus Campos',
     'API_KEY': '547488382655417',
     'API_SECRET': '9jlkrods6LBMORYwWrl0VzI8170'
 }
