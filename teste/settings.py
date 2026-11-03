@@ -151,7 +151,7 @@ MAILERS = {
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': 'Matheus_Campos',
     'API_KEY': '547488382655417',
-    'API_SCRET': '9jlkrods6LBMORYwWrl0VzI8170'
+    'API_SECRET': '9jlkrods6LBMORYwWrl0VzI8170'
 }
 
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MedialCloudinaryStorage'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
