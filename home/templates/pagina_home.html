@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Redaction+10:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <!-- Profile card start -->
@@ -28,8 +28,8 @@
             <a href="#" class="fa-brands fa-whatsapp"></a>
             <a href="https://www.instagram.com/mello_mde?exln=MTR5MGE4OXcyNmM2cQ==" class="fa-brands fa-instagram"></a>
         </div>
-        <div class="div background-image">
-            <img src="{% static 'image/mde-preto.jpg'%}" alt="fundo-preto">
+        <div class="bg-container">
+            <img src="{% static 'image/mde-preto.png'%}" alt="fundo-preto">
         </div>
     </div>
     <!-- Profile card end -->
@@ -135,8 +135,8 @@
                 <source id="modalVideoSource" src="" type="video/mp4">
                 Seu navegador não suporta vídeos.
             </video>
-            <h2 id="modalVideoTitle" style="margin-top: 15px; color: #222;"></h2>
-            <p id="modalVideoDesc" style="color: #666;"></p>
+            <h2 id="modalVideoTitle" style="margin-top: 15px; color: #fdfdfd;"></h2>
+            <p id="modalVideoDesc" style="color: #c7c0c0;"></p>
         </div>
     </div>
 
@@ -144,7 +144,7 @@
     <div id="editModal" class="lightbox" onclick="closeEditModal(event)">
         <div class="lightbox-content" onclick="event.stopPropagation()">
             <span class="lightbox-close" onclick="closeEditModal()">&times;</span>
-            <h2 style="margin-bottom: 15px; color: #222;">Editar Informações</h2>
+            <h2 style="margin-bottom: 15px; color: #fdfbfb;">Editar Informações</h2>
             <form id="editForm" onsubmit="saveEdit(event)" style="display: flex; flex-direction: column; gap: 12px;" method="POST"> 
                 {% csrf_token %}
                 <input type="text" id="editTitleInput" placeholder="Novo Título" required style="padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-family: 'Candara', sans-serif; font-size: 15px;">

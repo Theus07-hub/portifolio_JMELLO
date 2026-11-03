@@ -1,9 +1,29 @@
+/* ================= FUNDO ISOLADO (IMG SEPARADA) ================= */
+.bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -999;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.bg-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(2px);
+}
+
+/* ================= CONFIGURAÇÃO GLOBAL ================= */
 body {
     margin: 0;
     padding: 2rem;
     min-height: 100vh;
-    background-color: #f4f4f4;
-    font-family: "Candara", sans-serif;
+    background-color: #000000;
+    font-family: 'Syne', sans-serif; /* Fonte moderna e marcante em todo o site */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -12,12 +32,12 @@ body {
 }
 
 .card {
-    font-family: "Candara", sans-serif;
+    font-family: 'Syne', sans-serif;
     width: 340px;
     overflow: hidden;
-    background: #ffffff;
+    background: black;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(248, 248, 248, 0.5);
     display: flex;
     flex-direction: column;
 }
@@ -28,19 +48,6 @@ body {
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     object-fit: cover;
-}
-
-.background-image img{
-    position: absolute;
-    top: -15%;
-    left: 0%;
-    width: 100%;
-    min-height: 100vh;
-    background-image: url("../image/mdm-branco.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    filter: blur(2px);
-    z-index: -1;
 }
 
 .profile-image img{
@@ -62,15 +69,19 @@ body {
 }
 
 .card-content h3{
-    font-size: 25px;
+    font-size: 18px;
     text-align: center;
+    color: #fdfdfd;
     margin: 0;
+    font-weight: 800;
 }
 
 .card-content p{
-    font-size: 16px;
+    font-size: 15px;
+    color: #fafafa;
     text-align: center;
     padding: 0 20px 5px 20px;
+    font-weight: 700;
 }
 
 .icons{
@@ -82,7 +93,7 @@ body {
 .icons a{
     text-decoration: none;
     font-size: 20px;
-    color: #000000;
+    color: #fafafa;
     padding: 0 14px;
     transition-duration: 0.4s;
     transition-property: transform;
@@ -93,34 +104,38 @@ body {
 }
 
 .section_foto {
-    background-color: rgba(3, 3, 3, 0.432);
+    background-color: rgba(3, 3, 3, 0.6);
     text-align: center;
     margin-top: 40px;
     margin-bottom: 10px;
     color: #fdfdfd;
-    font-family: 'Redaction 10', sans-serif;
-    font-size: 28px;
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
     padding: 12px;
     border-radius: 8px;
     width: 100%;
     max-width: 650px;
+    letter-spacing: 1px;
 }
 
 .section_video {
-    background-color: rgba(3, 3, 3, 0.432);
+    background-color: rgba(3, 3, 3, 0.6);
     text-align: center;
     margin-top: 40px;
     margin-bottom: 10px;
     color: #fdfdfd;
-    font-family: 'Redaction 10', sans-serif;
-    font-size: 28px;
+    font-family: 'Syne', sans-serif;
+    font-size: 18px;
+    font-weight: 800;
     padding: 12px;
     border-radius: 8px;
     width: 100%;
     max-width: 650px;
+    letter-spacing: 1px;
 }
 
-/* ================= CARROSSEL MODERNO E COMPATÍVEL ================= */
+/* ================= CARROSSEL ================= */
 
 .carousel-container {
     position: relative;
@@ -149,16 +164,15 @@ body {
 .carousel-item {
     flex: 0 0 240px;
     scroll-snap-align: center;
-    background: #fcf8f8ad;
+    background: #020000;
     border-radius: 12px;
     padding: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 15px rgba(252, 251, 251, 0.2);
     text-align: center;
     transition: transform 0.3s ease;
-    justify-content: center;
-    align-items: center;
     position: relative;
 }
+
 
 /* Ações do Card (Editar / Excluir) */
 .item-actions {
@@ -195,8 +209,7 @@ body {
     transform: scale(1.1);
 }
 
-.item-actions .delete-btn:hover,
-.item-actions button.delete-btn:hover {
+.item-actions .delete-btn:hover {
     background: #ff0303 !important;
 }
 
@@ -227,7 +240,7 @@ body {
 .carousel-item p {
     font-size: 1.0rem;
     margin: 0;
-    color: #050505;
+    color: #555;
 }
 
 /* Botões de navegação do carrossel */
@@ -265,14 +278,14 @@ body {
 /* ================= FORMULÁRIO DE ADICIONAR FOTO ================= */
 
 .card-photo {
-    background: #ffffff;
+    background: #020202;
     width: 340px;
     max-width: 100%;
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 20px rgba(250, 249, 249, 0.5);
     padding: 20px;
     box-sizing: border-box;
-    font-family: "Candara", sans-serif;
+    font-family: 'Syne', sans-serif;
     margin-bottom: 1rem;
 }
 
@@ -289,7 +302,7 @@ body {
     border: 1px solid #ccc;
     border-radius: 6px;
     font-size: 15px;
-    font-family: "Candara", sans-serif;
+    font-family: 'Syne', sans-serif;
     box-sizing: border-box;
     outline: none;
     transition: border-color 0.3s;
@@ -306,14 +319,14 @@ body {
 }
 
 .add-btn {
-    background-color: #0f172b;
+    background-color: #073099;
     color: white;
     border: none;
     padding: 12px;
     border-radius: 0px;
     font-size: 16px;
     font-weight: bold;
-    font-family: "Candara", sans-serif;
+    font-family: 'Syne', sans-serif;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
     display: flex;
@@ -326,7 +339,7 @@ body {
     transform: scale(1.02);
 }
 
-/* ================= LIGHTBOX E MODAL DE EDIÇÃO ================= */
+/* ================= LIGHTBOX E MODAL ================= */
 .lightbox {
     display: none;
     position: fixed;
@@ -347,7 +360,7 @@ body {
 }
 
 .lightbox-content {
-    background: #ffffff;
+    background: #070707;
     padding: 25px;
     border-radius: 12px;
     max-width: 500px;
@@ -355,7 +368,7 @@ body {
     text-align: center;
     position: relative;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    font-family: "Candara", sans-serif;
+    font-family: 'Syne', sans-serif;
 }
 
 .lightbox-content img {
@@ -369,13 +382,13 @@ body {
 .lightbox-content h2 {
     margin: 10px 0 5px 0;
     font-size: 1.3rem;
-    color: #222;
+    color: #f7f4f4;
 }
 
 .lightbox-content p {
     margin: 0;
     font-size: 1rem;
-    color: #666;
+    color: #eeebeb;
 }
 
 .lightbox-close {
