@@ -229,3 +229,52 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+
+// ================= UPLOAD DIRETO CLOUDINARY (WIDGET) =================
+
+// Configuração do Widget para Fotos
+const imageUploadWidget = cloudinary.createUploadWidget({
+    cloudName: 'aicaxwry',
+    uploadPreset: 'portifolio_present', // Crie um preset do tipo 'Unsigned' no seu painel do Cloudinary
+    sources: ['local', 'url', 'camera'],
+    resource_type: 'image',
+    multiple: false
+}, (error, result) => {
+    if (!error && result && result.event === "success") {
+        document.getElementById('imagemUrlInput').value = result.info.secure_url;
+        document.getElementById('statusUpload').innerText = "✅ Foto enviada para a nuvem com sucesso!";
+    }
+});
+
+// Configuração do Widget para Vídeos (Bypassa o limite de 4.5MB do Vercel)
+const videoUploadWidget = cloudinary.createUploadWidget({
+    cloudName: 'aicaxwry',
+    uploadPreset: 'portifolio_present', // Mesmíssimo preset unsigned
+    sources: ['local', 'url'],
+    resource_type: 'video',
+    multiple: false
+}, (error, result) => {
+    if (!error && result && result.event === "success") {
+        document.getElementById('videoUrlInput').value = result.info.secure_url;
+        document.getElementById('statusUpload').innerText = "✅ Vídeo enviado para a nuvem com sucesso!";
+    }
+});
+
+// Eventos de clique nos botões do painel adm
+document.addEventListener('DOMContentLoaded', () => {
+    const btnImg = document.getElementById('uploadImageBtn');
+    const btnVid = document.getElementById('uploadVideoBtn');
+
+    if (btnImg) {
+        btnImg.addEventListener('click', () => {
+            imageUploadWidget.open();
+        });
+    }
+
+    if (btnVid) {
+        btnVid.addEventListener('click', () => {
+            videoUploadWidget.open();
+        });
+    }
+});
