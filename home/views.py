@@ -32,8 +32,8 @@ def pagina_inicial_home(request):
     if not request.session.get('admin_logado'):
         return redirect('signup')
 
-    fotos = FotoPortifolio.objects.exclude(imagem='')
-    videos = FotoPortifolio.objects.exclude(video='')
+    fotos = FotoPortifolio.objects.exclude(imagem__isnull=True).exclude(imagem='')
+    videos = FotoPortifolio.objects.exclude(video__isnull=True).exclude(video='')
     contexto = {
         'fotos': fotos,
         'videos': videos,
@@ -44,8 +44,8 @@ def pagina_inicial_home(request):
 
 # Rota pública dos visitantes (Continua livre para todos)
 def portifolio_jmello(request):
-    fotos = FotoPortifolio.objects.exclude(imagem='')
-    videos = FotoPortifolio.objects.exclude(video='')
+    fotos = FotoPortifolio.objects.exclude(imagem__isnull=True).exclude(imagem='')
+    videos = FotoPortifolio.objects.exclude(video__isnull=True).exclude(video='')
     contexto = {
         'fotos': fotos,
         'videos': videos,
